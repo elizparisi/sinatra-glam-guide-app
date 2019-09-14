@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       redirect '/products'
 
     else
-      erb :signup
+      erb :'users/signup'
     end
   end
 
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     else
       redirect '/'
     end
-  end 
+  end
 
 
 end
