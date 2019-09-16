@@ -45,11 +45,25 @@ class UsersController < ApplicationController
       redirect '/products'
 
     else
-      erb :login
+      erb :'users/login'
     end
   end
 
-  #post login
+  post '/login' do
+  # find user, authenticate user, create a session for a user that is logged in
+  # if the user is logged in, redirect to products
+  # if the user is not logged in, redirect to login page
+    @user = User.find_by(email: params[:email])
+
+    if @user && user.authenticate(params[:password])
+      session[:user_id] = @user.id
+
+      redirect '/products'
+
+    else
+      redirect '/login'
+    end
+  end
 
   #user show route
 
@@ -58,7 +72,7 @@ class UsersController < ApplicationController
     if logged_in?
       session.clear
 
-      redirect '/login'
+      redirect 'users/login'
 
     else
       redirect '/'
