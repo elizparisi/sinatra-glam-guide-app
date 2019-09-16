@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       redirect '/products'
 
     else
-      redirect '/login'
+      redirect '/users/login'
     end
   end
 
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     if logged_in?
       session.clear
 
-      redirect 'users/login'
+      redirect '/users/login'
 
     else
       redirect '/'
