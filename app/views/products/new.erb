@@ -1,1 +1,22 @@
-"this will be the new product form"
+<h1>Create a New Product</h1>
+<h2>Enter the product info below.</h2>
+
+<form action="/products" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name">
+  <br>
+  <br>
+  <label for="description">Description:</label>
+  <input type="text" name="description" id="description">
+  <br>
+  <br>
+  <label for="image_url">Image URL:</label>
+  <input type="text" name="image_url" id="image_url">
+  <br>
+  <br>
+  <label for="rating">Rating:</label>
+  <input type="number" name="rating" id="rating">
+  <br>
+  <br>
+  <input type="submit" id="submit" value="Create Product!">
+</form>
