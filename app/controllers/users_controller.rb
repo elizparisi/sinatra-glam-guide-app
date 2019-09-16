@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   # if the user is not logged in, redirect to login page
     @user = User.find_by(email: params[:email])
 
-    if @user && user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
 
       redirect '/products'

@@ -1,5 +1,12 @@
 class ProductsController < ApplicationController
 
+  #show all products
+  get '/products' do
+    @products = Product.all
+
+    erb :'/products/products'
+  end
+
   # create new product
   get '/products/new' do
   # if the user is logged in direct to create product form
@@ -9,9 +16,9 @@ class ProductsController < ApplicationController
       erb :'/products/new'
 
     else
-      redirect '/users/login'
+      redirect '/login'
     end
   end
 
-  
+
 end
