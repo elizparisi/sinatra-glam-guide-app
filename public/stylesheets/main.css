@@ -30,6 +30,11 @@
     width: 85%;
   }
 
+  div.nav {
+    text-align: center;
+    justify-content: space-around;
+  }
+
   h1.title {
     font-family: 'Monoton';
   }

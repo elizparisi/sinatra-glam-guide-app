@@ -12,12 +12,12 @@ class ProductsController < ApplicationController
   # if the user is logged in direct to create product form
   # if user is not logged in, redirect to login page
 
-    if logged_in?
+    #if logged_in?
       erb :'/products/new'
 
-    else
-      redirect '/login'
-    end
+    #else
+    #  redirect '/login'
+    #end
   end
 
 

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       redirect '/products'
 
     else
-      erb :'users/signup'
+      erb :signup
     end
   end
 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
       redirect '/products'
 
     else
-      erb :'users/login'
+      erb :login
     end
   end
 
@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       redirect '/products'
 
     else
-      redirect '/users/login'
+      redirect '/login'
     end
   end
 
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
     if logged_in?
       session.clear
 
-      redirect '/users/login'
+      redirect '/login'
 
     else
       redirect '/'
