@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 # this controller has full CRUD
 
-  #show all products
+  #index for all products
   get '/products' do
     @products = Product.all
 
@@ -14,11 +14,28 @@ class ProductsController < ApplicationController
   # if user is not logged in, redirect to login page
 
     #if logged_in?
+    if logged_in
       erb :'/products/new'
 
     #else
+    else
     #  redirect '/login'
+      redirect '/login'
+    end
     #end
+  end
+
+  post '/products' do
+    @product = Products.new(params)
+
+    # if the product saves, redirect to individual product page
+    # if it doesn't save, redirect to '/products/new'
+    if @product.save
+      redirect "/posts/#{@product.id}"
+
+    else
+      redirect '/products/new'
+    end
   end
 
 
