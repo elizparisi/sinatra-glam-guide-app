@@ -38,5 +38,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  # delete product
+  delete '/products' do
+    # find product id, then delete that individual product
+    @product = Product.find(params[:id])
+    @product.destroy
+
+    redirect '/products'
+  end 
+
 
 end
