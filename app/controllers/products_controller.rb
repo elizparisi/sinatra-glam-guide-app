@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
+# this controller has full CRUD
 
   #show all products
   get '/products' do
     @products = Product.all
 
-    erb :'/products/products'
+    erb :'/products/index'
   end
 
   # create new product
