@@ -54,6 +54,13 @@ class ProductsController < ApplicationController
     erb :'/products/edit'
   end
 
+  # PATCH route to edit existing product
+  patch '/products/:id' do
+    @product = Product.find(params[:id])
+    @product.update(params)
+
+    redirect "/product/#{@product.id}"
+  end
 
   # delete product
   delete '/products' do
