@@ -18,14 +18,13 @@
     <div class="nav">
       <!-- put nav items here -->
       <a href="/">Home</a>
-      <!-- add erb syntax here so only current user can navigate to product info, create new product and logout-->
-      <a href="/products">Product Info</a>
-      <a href="/products/new">Create New Product</a>
-      <a href="/logout">Logout</a>
-
       <!-- if not the current user, they can only navigate to signup or login -->
       <a href="/signup">Sign Up</a>
       <a href="/login">Login</a>
+      <!-- add erb syntax here so only current user can navigate to product info, create new product and logout-->
+      <a href="/products/index">Products</a>
+      <a href="/products/new">Create New Product</a>
+      <a href="/logout">Logout</a>
     </div>
     <div class="wrapper">
 

@@ -3,9 +3,9 @@ class ProductsController < ApplicationController
 
   #index for all products
   get '/products' do
-    @products = Product.all
+      @products = Product.all
 
-    erb :'/products/index'
+      erb :'/products/index'
   end
 
   # CREATE new product
@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   # if user is not logged in, redirect to login page
 
     #if logged_in?
-    if logged_in
+    if logged_in?
       erb :'/products/new'
 
     #else
@@ -26,12 +26,12 @@ class ProductsController < ApplicationController
   end
 
   post '/products' do
-    @product = Products.new(params)
+    @product = Product.new(params)
 
     # if the product saves, redirect to individual product page
     # if it doesn't save, redirect to '/products/new'
     if @product.save
-      redirect "/posts/#{@product.id}"
+      redirect "/products/#{@product.id}"
 
     else
       redirect '/products/new'
