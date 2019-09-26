@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     erb :'/products/index'
   end
 
-  # create new product
+  # CREATE new product
   get '/products/new' do
   # if the user is logged in direct to create product form
   # if user is not logged in, redirect to login page
@@ -38,6 +38,23 @@ class ProductsController < ApplicationController
     end
   end
 
+  # show route for a single product
+  get '/products/:id' do
+    @product = Product.find(params[:id])
+
+    erb :'/products/show'
+  end
+
+  # UPDATE
+  # put a link to edit form on the individual show page
+  # edit should only be available to the user that created the product
+  get '/products/:id/edit' do
+    @post = Product.find(params[:id])
+
+    erb :'/products/edit'
+  end
+
+
   # delete product
   delete '/products' do
     # find product id, then delete that individual product
@@ -45,7 +62,7 @@ class ProductsController < ApplicationController
     @product.destroy
 
     redirect '/products'
-  end 
+  end
 
 
 end
