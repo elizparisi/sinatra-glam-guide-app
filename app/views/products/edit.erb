@@ -1,6 +1,6 @@
-<h1>Edit <%@product.name %></h1>
+<h1>Edit <% @product.name %></h1>
 
-<form action="/products/#{@product.id}" action="post">
+<form action="/products/<%= @product.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
 
   <label for="name">Name:</label>
