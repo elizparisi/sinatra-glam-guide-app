@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 # this controller has full CRUD
 
-  #index for all products
+  # READ index for all products
   get '/products' do
       @products = Product.all
 
@@ -14,14 +14,14 @@ class ProductsController < ApplicationController
   # if user is not logged in, redirect to login page
 
     #if logged_in?
-    if logged_in?
+    #if logged_in?
       erb :'/products/new'
 
     #else
-    else
+    #else
     #  redirect '/login'
-      redirect '/login'
-    end
+    #  redirect '/login'
+    #end
     #end
   end
 
@@ -59,11 +59,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update(params)
 
-    redirect "/product/#{@product.id}"
+    redirect "/products/#{@product.id}"
   end
 
-  # delete product
-  delete '/products' do
+  # DELETE delete product
+  delete '/products/:id' do
     # find product id, then delete that individual product
     @product = Product.find(params[:id])
     @product.destroy
