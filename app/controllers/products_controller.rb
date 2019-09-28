@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
       erb :'/products/index'
   end
 
-  # CREATE new product
+  # CREATE form to create new product
   get '/products/new' do
   # if the user is logged in direct to create product form
   # if user is not logged in, redirect to login page
@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   end
 
   post '/products' do
-    @product = Product.new(params)
+    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
     # if the product saves, redirect to individual product page
     # if it doesn't save, redirect to '/products/new'
@@ -38,18 +38,19 @@ class ProductsController < ApplicationController
     end
   end
 
-  # show route for a single product
+  # shows a single product
   get '/products/:id' do
     @product = Product.find(params[:id])
 
     erb :'/products/show'
   end
 
+
   # UPDATE
   # put a link to edit form on the individual show page
   # edit should only be available to the user that created the product
   get '/products/:id/edit' do
-    @post = Product.find(params[:id])
+    @product = Product.find(params[:id])
 
     erb :'/products/edit'
   end
