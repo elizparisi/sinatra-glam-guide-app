@@ -58,7 +58,7 @@ class ProductsController < ApplicationController
   # PATCH route to edit existing product
   patch '/products/:id' do
     @product = Product.find(params[:id])
-    @product.update(params)
+    @product.update(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
     redirect "/products/#{@product.id}"
   end
