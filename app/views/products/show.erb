@@ -1,6 +1,7 @@
 <h1><%= @product.name %></h1>
 
 <!-- NEED TO ADD IMAGE WITH image_url HERE -->
+<img src="<%= @product.image_url %>" alt="<%= @product.name %>">
 <%= @product.rating %>
 <br>
 <br>
@@ -8,3 +9,12 @@
 <br>
 <br>
 <a href="/products/<%= @product.id %>/edit">Edit Product Info</a>
+<br>
+<br>
+<br>
+<br>
+
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" id="submit" value="Delete This Product">
+</form>
