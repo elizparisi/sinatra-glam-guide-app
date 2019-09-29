@@ -1,1 +1,19 @@
-<h1>Creat a New Product and Review</h1>
+<h1>Review a Product</h1>
+
+<form action="/reviews" method="post">
+  <label for="name">Product Name:</label>
+  <input type="text" name="product[name]" id="name">
+
+  <h3>Review One</h3>
+    <label for="review-content-1">Content:</label>
+    <textarea name="product[reviews][][content]" id="review-content-1" rows="8" cols="80"></textarea>
+  <br>
+  <br>
+  <br>
+  <h3>Review Two</h3>
+    <label for="review-content-2">Content:</label>
+    <textarea name="product[reviews][][content]" id="review-content-2" rows="8" cols="80"></textarea>
+  <br>
+  <br>
+  <input type="submit" id="submit" value="Post Review!">
+</form>

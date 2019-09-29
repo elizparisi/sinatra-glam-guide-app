@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
   get '/reviews/new' do
 
-    erb :'/reviews new'
+    erb :'/reviews/new'
   end
 
   post '/reviews' do
@@ -20,5 +20,5 @@ class ReviewsController < ApplicationController
     product.save
 
     redirect '/products'
-  end 
+  end
 end
