@@ -5,12 +5,19 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    enable :session
+    enable :sessions
     set :session_secret, 'super_secret_beauty_session'
   end
 
   get "/" do
-    erb :welcome
+    if logged_in?
+      #redirect to users show page
+      redirect "/users/#{current_user.id}"
+
+    else
+
+      erb :welcome
+    end
   end
 
   helpers do
@@ -21,6 +28,10 @@ class ApplicationController < Sinatra::Base
 
     def logged_in?
       !!current_user
+    end
+
+    def authorized_to_edit?(product)
+      current_user == product.user
     end
   end
 end

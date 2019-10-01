@@ -25,19 +25,6 @@ class ProductsController < ApplicationController
     #end
   end
 
-  post '/products' do
-    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
-
-    # if the product saves, redirect to individual product page
-    # if it doesn't save, redirect to '/products/new'
-    if @product.save
-      redirect "/products/#{@product.id}"
-
-    else
-      redirect '/products/new'
-    end
-  end
-
   # shows a single product
   get '/products/:id' do
     @product = Product.find(params[:id])
@@ -61,6 +48,19 @@ class ProductsController < ApplicationController
     @product.update(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
     redirect "/products/#{@product.id}"
+  end
+
+  post '/products' do
+    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
+
+    # if the product saves, redirect to individual product page
+    # if it doesn't save, redirect to '/products/new'
+    if @product.save
+      redirect "/products/#{@product.id}"
+
+    else
+      redirect '/products/new'
+    end
   end
 
   # DELETE delete product
