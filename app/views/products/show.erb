@@ -8,13 +8,15 @@
 <p><%= @product.description %></p>
 <br>
 <br>
-<a href="/products/<%= @product.id %>/edit">Edit Product Info</a>
-<br>
-<br>
 <a href="/reviews/new">Review This Product</a>
 <br>
 <br>
 
+<% if authorized_to_edit(@product) %>
+
+<a href="/products/<%= @product.id %>/edit">Edit Product Info</a>
+<br>
+<br>
 <form action="/products/<%= @product.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" id="submit" value="Delete This Product">
