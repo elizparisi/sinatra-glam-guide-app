@@ -1,9 +1,9 @@
 <h1>All Products</h1>
 
 <% @products.each do |product| %>
-  <h3><%= @product.name %></h3>
-  <img src="<%= @product.image_url %>" alt="<%= @product.name %>">
-  <%= @product.rating %>
-  <%= @product.description %>
+  <h3><%= product.name %></h3>
+  <p><img src="<%= product.image_url %>" alt="<%= product.name %>" height="200" width="200"><p>
+  <p>Rating: <%= product.rating %></p>
+  <p>Description: <%= product.description %></p>
 
 <% end %>
