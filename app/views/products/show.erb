@@ -12,7 +12,7 @@
 <br>
 <br>
 
-<% if authorized_to_edit(@product) %>
+<% if authorized_to_edit?(@product) %>
 
 <a href="/products/<%= @product.id %>/edit">Edit Product Info</a>
 <br>
@@ -21,3 +21,5 @@
   <input type="hidden" name="_method" value="delete">
   <input type="submit" id="submit" value="Delete This Product">
 </form>
+
+<% end %>
