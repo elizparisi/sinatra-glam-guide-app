@@ -14,18 +14,33 @@ class ProductsController < ApplicationController
   # if user is not logged in, redirect to login page
 
     #if logged_in?
-    #if logged_in?
+    if logged_in?
       erb :'/products/new'
 
     #else
-    #else
+    else
     #  redirect '/login'
-    #  redirect '/login'
+      redirect '/login'
     #end
-    #end
+    end
   end
 
-  # shows a single product
+  post '/products' do
+    # gets params from create product form
+    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
+
+    # if the product saves, redirect to individual product page
+    # if it doesn't save, redirect to '/products/new'
+    if @product.save
+      redirect "/products/#{@product.id}"
+
+    else
+      redirect '/products/new'
+    end
+  end
+
+  # READ
+  #shows a single product
   get '/products/:id' do
     @product = Product.find(params[:id])
 
@@ -39,28 +54,21 @@ class ProductsController < ApplicationController
   get '/products/:id/edit' do
     @product = Product.find(params[:id])
 
-    erb :'/products/edit'
+    if authorized_to_edit?(@product)
+
+      erb :'/products/edit'
+
+    else
+      redirect '/products'
+    end
   end
 
-  # PATCH route to edit existing product
+  # PATCH route to update info on existing product
   patch '/products/:id' do
     @product = Product.find(params[:id])
     @product.update(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
     redirect "/products/#{@product.id}"
-  end
-
-  post '/products' do
-    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
-
-    # if the product saves, redirect to individual product page
-    # if it doesn't save, redirect to '/products/new'
-    if @product.save
-      redirect "/products/#{@product.id}"
-
-    else
-      redirect '/products/new'
-    end
   end
 
   # DELETE delete product
