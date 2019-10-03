@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   post '/reviews' do
-    @product = Product.new(name: params[:product][:name], description: params[:product][:description], image_url: params[:product][:image_url], rating: params[:product][:rating])
+    product = Product.new(name: params[:product][:name], description: params[:product][:description], image_url: params[:product][:image_url], rating: params[:product][:rating])
 
     product.user = current_user
 
