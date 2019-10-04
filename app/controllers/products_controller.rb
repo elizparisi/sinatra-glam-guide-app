@@ -66,9 +66,16 @@ class ProductsController < ApplicationController
   # PATCH route to update info on existing product
   patch '/products/:id' do
     @product = Product.find(params[:id])
-    @product.update(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
-    redirect "/products/#{@product.id}"
+    if params[:name] !="" && params[:image_url] !="" && params[:rating] !="" && params[:description] !=""
+
+      @product.update(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
+
+      redirect "/products/#{@product.id}"
+
+    else
+      redirect "users/#{current_user.id}"
+    end
   end
 
   # DELETE delete product
