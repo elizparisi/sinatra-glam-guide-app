@@ -70,6 +70,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
 
     erb :'/users/show'
+  end
 
   get '/logout' do
 
