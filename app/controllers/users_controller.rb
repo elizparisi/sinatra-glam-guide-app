@@ -66,11 +66,6 @@ class UsersController < ApplicationController
   end
 
   #user show route
-  get '/users/:id' do
-    @user = User.find_by_id(params[:id])
-
-    erb :'/users/show'
-  end
 
 
   get '/logout' do
