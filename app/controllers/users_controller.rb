@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
 
-      redirect '/products'
+      redirect "/users/#{@user.id}"
 
     else
       redirect '/login'
@@ -66,6 +66,12 @@ class UsersController < ApplicationController
   end
 
   #user show route
+  get '/users/:id' do
+    @user = User.find_by_id(params[:id])
+
+    erb :'/users/show'
+  end
+
 
   get '/logout' do
 
