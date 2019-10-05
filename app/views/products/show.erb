@@ -10,7 +10,9 @@
 <a href="/products/<%= @product.id %>/reviews/new">Review This Product</a>
 <br>
 <br>
-
+<a href="/products/<%= @product.id %>/reviews">See Reviews for this Product</a>
+<br>
+<br>
 <% if authorized_to_edit?(@product) %>
 
 <a href="/products/<%= @product.id %>/edit">Edit Product Info</a>
