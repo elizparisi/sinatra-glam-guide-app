@@ -1,7 +1,7 @@
 Glam Guide - Sinatra App
 =
 
-Glam Guide is a simple web application designed for users to rate and review beauty products and tools. The user signs up to create an account. Once the user has signed up they can log in to the app to create, view, update and delete their products.
+Glam Guide is a simple web application designed for users to rate and review beauty products and tools. The user signs up to create an account. Once the user has signed up they can log in to the app to create, view, update and delete their products. The user can also review products and view other reviews. 
 
 Installation & Setup
 =
@@ -21,4 +21,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/elizpa
 License
 =
 
-The app is available as open source under the terms of the MIT License.f
+The app is available as open source under the terms of the MIT License.
+
+
