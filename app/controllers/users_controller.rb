@@ -24,8 +24,7 @@ class UsersController < ApplicationController
   post '/signup' do
   # creates a new user if all credentials are provided (email and password)
   # if credentials are blank, redirect to signup
-  binding.pry
-    if params[:email].empty? && params[:password].empty?
+    if params[:email].empty? || params[:password].empty?
       redirect '/signup'
 
     else
