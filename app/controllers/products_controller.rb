@@ -87,5 +87,4 @@ class ProductsController < ApplicationController
     redirect '/products'
   end
 
-
 end

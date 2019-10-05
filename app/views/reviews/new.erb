@@ -1,8 +1,7 @@
 <h1>Review a Product</h1>
 
-<form action="/reviews/<%= @product.id %>" method="post">
-  <label for="name">Product Name:</label>
-  <input type="text" name="product[name]" id="name">
+<form action="/products/<%= @product.id %>/reviews" method="post">
+  <label for="name"><%= @product.name %></label>
 
   <h3>Review One</h3>
     <label for="review-content-1">Content:</label>

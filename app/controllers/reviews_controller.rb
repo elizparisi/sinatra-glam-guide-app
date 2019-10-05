@@ -6,9 +6,29 @@ class ReviewsController < ApplicationController
     erb :'/reviews/new'
   end
 
-  post '/reviews' do
-    review = Review.create(content: params[:content], product_id: params[:product_id], user_id: session[:user_id])
+  post '/products/:id/reviews' do
+    @product = Product.find(params[:id])
+    #binding.pry
+    params[:product][:reviews].each do |review|
 
-    redirect "/products/#{review.product_id}"
-  end 
+      if review[:content] != ""
+        @product.reviews.create(content: review[:content], user_id: current_user.id)
+      end
+    end
+
+    redirect "/products/#{@product.id}/reviews"
+  end
+
+  get '/products/:id/reviews/new' do
+    @product = Product.find_by_id(params[:id])
+
+    erb :'/reviews/new'
+  end
+
+  get '/products/:id/reviews' do
+    @product = Product.find_by_id(params[:id])
+    @reviews = @product.reviews
+
+    erb :'/reviews/index'
+  end
 end

@@ -24,17 +24,24 @@ class UsersController < ApplicationController
   post '/signup' do
   # creates a new user if all credentials are provided (email and password)
   # if credentials are blank, redirect to signup
-
-    if params[:email].empty? || params[:password].empty?
+  binding.pry
+    if params[:email].empty? && params[:password].empty?
       redirect '/signup'
 
     else
       @user = User.new(params)
-      @user.save
-      session[:user_id] = @user.id
 
-      redirect '/products'
+      if @user.save
+        session[:user_id] = @user.id
+
+        redirect '/products'
+
+      else
+        redirect '/'
+      end
     end
+
+
   end
 
   get '/login' do
