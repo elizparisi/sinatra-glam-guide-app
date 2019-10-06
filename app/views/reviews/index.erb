@@ -1,8 +1,8 @@
-<h1>See All Reviews for <%= @product.name %></h1>
+<h1>All Reviews for <%= @product.name %></h1>
 
 <% @reviews.each do |review| %>
   <p><%= review.content %><p>
   <% if review.user %>
-  <p>Reviewed by: <%= review.user.email %></p>
+  <p><strong>Reviewed by:</strong> <%= review.user.email %></p>
   <% end %>
 <% end %>
