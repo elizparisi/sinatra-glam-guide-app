@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
 
-  # render reviews form
   get '/reviews/new' do
 
     erb :'/reviews/new'
@@ -8,7 +7,7 @@ class ReviewsController < ApplicationController
 
   post '/products/:id/reviews' do
     @product = Product.find(params[:id])
-    #binding.pry
+
     params[:product][:reviews].each do |review|
 
       if review[:content] != ""

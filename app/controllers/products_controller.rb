@@ -1,36 +1,26 @@
 class ProductsController < ApplicationController
-# this controller has full CRUD
 
-  # READ index for all products
   get '/products' do
       @products = Product.all
 
       erb :'/products/index'
   end
 
-  # CREATE form to create new product
-  get '/products/new' do
-  # if the user is logged in direct to create product form
-  # if user is not logged in, redirect to login page
 
-    #if logged_in?
+  get '/products/new' do
     if logged_in?
       erb :'/products/new'
 
-    #else
     else
-    #  redirect '/login'
+
       redirect '/login'
-    #end
+
     end
   end
 
   post '/products' do
-    # gets params from create product form
     @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
-    # if the product saves, redirect to individual product page
-    # if it doesn't save, redirect to '/products/new'
     if @product.save
       redirect "/products/#{@product.id}"
 
@@ -39,18 +29,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  # READ
-  #shows a single product
   get '/products/:id' do
     @product = Product.find(params[:id])
 
     erb :'/products/show'
   end
 
-
-  # UPDATE
-  # put a link to edit form on the individual show page
-  # edit should only be available to the user that created the product
   get '/products/:id/edit' do
     @product = Product.find(params[:id])
 
@@ -63,7 +47,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH route to update info on existing product
   patch '/products/:id' do
     @product = Product.find(params[:id])
 
@@ -78,13 +61,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE delete product
   delete '/products/:id' do
-    # find product id, then delete that individual product
     @product = Product.find(params[:id])
     @product.destroy
 
     redirect '/products'
   end
-
 end
