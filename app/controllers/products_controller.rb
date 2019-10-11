@@ -8,18 +8,14 @@ class ProductsController < ApplicationController
 
 
   get '/products/new' do
-    if logged_in?
+
+    redirect_if_not_logged_in
+
       erb :'/products/new'
-
-    else
-
-      redirect '/login'
-
-    end
   end
 
   post '/products' do
-    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
+    @product = Product.new(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description], user_id: current_user.id)
 
     if @product.save
       redirect "/products/#{@product.id}"
@@ -50,7 +46,7 @@ class ProductsController < ApplicationController
   patch '/products/:id' do
     @product = Product.find(params[:id])
 
-    if params[:name] !="" && params[:image_url] !="" && params[:rating] !="" && params[:description] !=""
+    if params[:name] !="" && params[:image_url] !="" && params[:rating] !="" && params[:description] !="" && authorized_to_edit?(@product)
 
       @product.update(name: params[:name], image_url: params[:image_url], rating: params[:rating], description: params[:description])
 
@@ -62,8 +58,12 @@ class ProductsController < ApplicationController
   end
 
   delete '/products/:id' do
-    @product = Product.find(params[:id])
-    @product.destroy
+
+      @product = Product.find(params[:id])
+
+      if authorized_to_edit?(@product)
+        @product.destroy
+      end
 
     redirect '/products'
   end

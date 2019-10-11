@@ -1,4 +1,14 @@
 <h1>Welcome back, <%= @user.email %>! Let's get Glam!</h1>
+
+<h2>Your Products</h2>
+<% @user.products.each do |product| %>
+  <h3><a href="/products/<%= product.id %>"><%= product.name %></a></h3>
+  <p><img src="<%= product.image_url %>" alt="<%= product.name %>" height="200" width="200"><p>
+  <p>Rating: <%= product.rating %></p>
+  <p>Description: <%= product.description %></p>
+
+<% end %>
+
 <br>
 <br>
 <p><a href="/products">View All Products</a>, <a href="/products/new">Create New Product</a> or <a href="/logout">Logout</a>
